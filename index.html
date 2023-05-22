@@ -220,9 +220,13 @@
       return "No ants here. Did you work them to death?";
     }
 
-    this.ants.forEach(ant => ant.health -= 20);
+    this.ants.forEach(ant => {
+      ant.health -= 20;
 
-    this.ants = this.ants.filter(ant => ant.health > 0);
+      if (ant.health <= 0) {
+        this.ants = this.ants.filter(a => a !== ant);
+      }
+    });
 
     return `${this.ants.length} ants starting work!`;
   }
