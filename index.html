@@ -216,20 +216,22 @@
   }
 
   work() {
-    if (this.ants.length === 0) {
-      return "No ants here. Did you work them to death?";
-    }
-
-    this.ants.forEach(ant => {
-      ant.health -= 20;
-
-      if (ant.health <= 0) {
-        this.ants = this.ants.filter(a => a !== ant);
-      }
-    });
-
-    return `${this.ants.length} ants starting work!`;
+  if (this.ants.length === 0) {
+    return "No ants here. Did you work them to death?";
   }
+
+  let antsStartingWork = this.ants.length;
+
+  this.ants.forEach(ant => {
+    ant.health -= 20;
+
+    if (ant.health <= 0) {
+      this.ants = this.ants.filter(a => a !== ant);
+    }
+  });
+
+  return `${antsStartingWork} ants starting work!`;
+}
 
   feed(name) {
     const matchingAnts = this.ants.filter(ant => ant.name === name);
